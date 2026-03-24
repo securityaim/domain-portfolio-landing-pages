@@ -1,0 +1,20 @@
+[build]
+  publish = "."
+
+# No build command needed — static HTML files
+# command = ""
+
+# Headers for all pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=3600"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets longer
+[[headers]]
+  for = "/pages/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
