@@ -422,11 +422,11 @@
         <!-- Price Card -->
         <section class="price-section" id="details">
             <div class="price-card">
-                <div class="price-label">Buy It Now Price</div>
-                <div class="price-value"><span class="currency">$</span>{{BIN_PRICE}}</div>
+                <div class="price-label">{{PRICE_LABEL}}</div>
+                <div class="price-value">{{BIN_PRICE}}</div>
                 <div class="price-note">Secure transfer via GoDaddy escrow &bull; Instant ownership</div>
-                <a href="mailto:{{CONTACT_EMAIL}}?subject=BUY%20{{DOMAIN_NAME}}%20at%20${{BIN_PRICE}}" class="btn btn-primary" id="buy-now-btn">
-                    Buy Now — Secure Transfer
+                <a href="mailto:{{CONTACT_EMAIL}}?subject=BUY%20{{DOMAIN_NAME}}" class="btn btn-primary" id="buy-now-btn">
+                    {{BUY_CTA}}
                 </a>
             </div>
         </section>
