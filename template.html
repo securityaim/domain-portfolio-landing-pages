@@ -425,9 +425,36 @@
                 <div class="price-label">{{PRICE_LABEL}}</div>
                 <div class="price-value">{{BIN_PRICE}}</div>
                 <div class="price-note">Secure transfer via GoDaddy escrow &bull; Instant ownership</div>
-                <a href="mailto:{{CONTACT_EMAIL}}?subject=BUY%20{{DOMAIN_NAME}}" class="btn btn-primary" id="buy-now-btn">
+                <button class="btn btn-primary" id="buy-now-btn" onclick="document.getElementById('offer-form').style.display='block'; this.style.display='none';">
                     {{BUY_CTA}}
-                </a>
+                </button>
+                <!-- Inline Contact Form -->
+                <div id="offer-form" style="display:none; margin-top: 24px; text-align: left;">
+                    <form id="offer-form-el" onsubmit="return submitOffer()" style="display:flex; flex-direction:column; gap:12px;">
+                        <input type="hidden" name="domain" value="{{DOMAIN_NAME}}">
+                        <input type="text" id="of-name" placeholder="Your Name" required style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px;">
+                        <input type="email" id="of-email" placeholder="Your Email" required style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px;">
+                        <input type="text" id="of-amount" placeholder="Your Offer (USD)" style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px;">
+                        <textarea id="of-msg" placeholder="Message (optional)" rows="3" style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px; resize:vertical;"></textarea>
+                        <button type="submit" class="btn btn-primary" style="margin-top:8px; cursor:pointer;">Submit Offer</button>
+                    </form>
+                    <p style="margin-top:12px; font-size:12px; color:rgba(255,255,255,0.4); text-align:center;">
+                        Or email directly: <a href="mailto:{{CONTACT_EMAIL}}?subject=Offer%20for%20{{DOMAIN_NAME}}" style="color:var(--accent3);">{{CONTACT_EMAIL}}</a>
+                    </p>
+                </div>
+                <script>
+                function submitOffer(){
+                    var d='{{DOMAIN_NAME}}',n=document.getElementById('of-name').value,
+                        e=document.getElementById('of-email').value,
+                        a=document.getElementById('of-amount').value,
+                        m=document.getElementById('of-msg').value;
+                    var body='Domain: '+d+'%0A%0AFrom: '+encodeURIComponent(n)+' ('+encodeURIComponent(e)+')';
+                    if(a) body+='%0AOffer: $'+encodeURIComponent(a);
+                    if(m) body+='%0AMessage: '+encodeURIComponent(m);
+                    window.location.href='mailto:{{CONTACT_EMAIL}}?subject=Offer for '+encodeURIComponent(d)+'&body='+body;
+                    return false;
+                }
+                </script>
             </div>
         </section>
 
