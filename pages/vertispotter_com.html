@@ -519,7 +519,7 @@
                         btn.disabled=true;
                         var fd=new FormData(form);
                         // Try Netlify Forms first, fall back to mailto
-                        fetch('https://securityaim-portfolio.netlify.app/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
+                        fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
                         .then(function(r){
                             if(!r.ok) throw new Error('not ok');
                             document.getElementById('offer-form').style.display='none';
