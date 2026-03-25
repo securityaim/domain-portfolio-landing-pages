@@ -68,6 +68,16 @@
     </style>
 </head>
 <body>
+    <!-- Hidden form for Netlify form detection (must be in root HTML for Netlify to register) -->
+    <form name="domain-offers" netlify netlify-honeypot="bot-field" hidden>
+        <input name="form-name" type="hidden" value="domain-offers">
+        <input name="domain" type="hidden">
+        <input name="bot-field" type="hidden">
+        <input name="name">
+        <input name="email">
+        <input name="offer">
+        <textarea name="message"></textarea>
+    </form>
     <div class="hero-index">
         <h1>Premium Domain Portfolio</h1>
         <p>Curated collection of 2128 premium domains across AI, cybersecurity, quantum computing, robotics, and emerging technology verticals.</p>
