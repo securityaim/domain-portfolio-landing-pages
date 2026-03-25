@@ -69,13 +69,13 @@
 </head>
 <body>
     <!-- Hidden form for Netlify form detection (must be in root HTML for Netlify to register) -->
-    <form name="domain-offers" netlify netlify-honeypot="bot-field" hidden>
-        <input name="form-name" type="hidden" value="domain-offers">
-        <input name="domain" type="hidden">
-        <input name="bot-field" type="hidden">
-        <input name="name">
-        <input name="email">
-        <input name="offer">
+    <form name="domain-offers" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="domain-offers">
+        <input type="hidden" name="domain">
+        <input type="hidden" name="bot-field">
+        <input type="text" name="name">
+        <input type="email" name="email">
+        <input type="text" name="offer">
         <textarea name="message"></textarea>
     </form>
     <div class="hero-index">
