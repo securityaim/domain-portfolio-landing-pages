@@ -115,12 +115,25 @@
         /* ─── HERO ─── */
         .hero {
             text-align: center;
-            padding: 80px 0 60px;
+            padding: 60px 0 40px;
         }
+        .hero-logo {
+            width: 600px;
+            max-width: 90vw;
+            height: auto;
+            border-radius: 28px;
+            object-fit: cover;
+            margin: 0 auto 24px;
+            display: block;
+            box-shadow: 0 16px 80px rgba(99, 102, 241, 0.35), 0 0 160px rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s ease;
+        }
+        .hero-logo:hover { transform: scale(1.02); }
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: block;
+            width: fit-content;
+            margin: 0 auto 24px;
             padding: 6px 16px;
             background: var(--accent-glow);
             border: 1px solid rgba(99, 102, 241, 0.2);
@@ -130,7 +143,6 @@
             color: var(--accent-3);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 32px;
         }
         .hero-domain {
             font-size: clamp(42px, 8vw, 72px);
@@ -155,6 +167,39 @@
             line-height: 1.6;
             max-width: 600px;
             margin: 0 auto 40px;
+        }
+        /* ─── ANTI-BOT CHALLENGE ─── */
+        .captcha-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .captcha-row label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .captcha-row input {
+            width: 80px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            font-family: inherit;
+        }
+        .captcha-error {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
         }
 
         /* ─── CTA BUTTONS ─── */
@@ -404,56 +449,95 @@
 
         <!-- Hero -->
         <section class="hero">
-            <div class="hero-badge">&#9733; Standard Domain</div>
-            <h1 class="hero-domain">genproagi.com</h1>
+            <div class="hero-badge">&#9733; Premium Domain</div>
+            <img src="../logos/genproagi_com.png" alt="genproagi.com" class="hero-logo" onerror="this.style.display='none'">
             <p class="hero-tagline">Own a prime piece of the artificial general intelligence revolution. This domain positions you at the forefront of the most transformative technology of our era.</p>
             <div class="cta-group">
-                <a href="mailto:getsomequotesnow@gmail.com?subject=Inquiry%20about%20genproagi.com" class="btn btn-primary" id="buy-btn">
+                <a href="mailto:getsomequotesnow@gmail.com?subject=Buy%20Now%20-%20genproagi.com&body=I%20want%20to%20buy%20genproagi.com%20at%20the%20listed%20price%20of%20%24800" class="btn btn-primary" id="buy-now-btn">Buy Now &mdash; $800</a>
+                <a href="#offer-section" class="btn btn-secondary" id="offer-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
                     Make an Offer
-                </a>
-                <a href="#details" class="btn btn-secondary" id="details-btn">
-                    Learn More
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14L12 21L5 14"/><path d="M12 3v18"/></svg>
                 </a>
             </div>
         </section>
 
         <!-- Price Card -->
-        <section class="price-section" id="details">
+        <!-- Offer / Buy Section -->
+        <section class="price-section" id="offer-section">
             <div class="price-card">
                 <div class="price-label">Buy It Now Price</div>
                 <div class="price-value"><span class="currency">$</span>800</div>
-                <div class="price-note">Secure transfer via GoDaddy escrow &bull; Instant ownership</div>
-                <button class="btn btn-primary" id="buy-now-btn" onclick="document.getElementById('offer-form').style.display='block'; this.style.display='none';">
-                    Buy Now at $800
-                </button>
-                <!-- Inline Contact Form -->
-                <div id="offer-form" style="display:none; margin-top: 24px; text-align: left;">
-                    <form id="offer-form-el" onsubmit="return submitOffer()" style="display:flex; flex-direction:column; gap:12px;">
+                <div class="price-note">Secure escrow transfer &bull; Instant ownership</div>
+
+                <!-- Offer Form -->
+                <div id="offer-form" style="margin-top: 24px; text-align: left;">
+                    <form name="domain-offers" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="offer-form-el" style="display:flex; flex-direction:column; gap:12px;">
+                        <input type="hidden" name="form-name" value="domain-offers">
                         <input type="hidden" name="domain" value="genproagi.com">
-                        <input type="text" id="of-name" placeholder="Your Name" required style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px;">
-                        <input type="email" id="of-email" placeholder="Your Email" required style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px;">
-                        <input type="text" id="of-amount" placeholder="Your Offer (USD)" style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px;">
-                        <textarea id="of-msg" placeholder="Message (optional)" rows="3" style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px; resize:vertical;"></textarea>
+                        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+                        <input type="text" name="name" placeholder="Your Name" required style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px; font-family:inherit;">
+                        <input type="email" name="email" placeholder="Your Email" required style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px; font-family:inherit;">
+                        <input type="text" name="offer" placeholder="Your Offer (USD)" style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px; font-family:inherit;">
+                        <textarea name="message" placeholder="Message (optional)" rows="3" style="padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px; resize:vertical; font-family:inherit;"></textarea>
+                        <!-- Anti-Bot Math Challenge -->
+                        <div class="captcha-row">
+                            <label id="captcha-q"></label>
+                            <input type="text" id="captcha-answer" placeholder="?" autocomplete="off" required>
+                        </div>
+                        <div class="captcha-error" id="captcha-error">Incorrect answer. Please try again.</div>
                         <button type="submit" class="btn btn-primary" style="margin-top:8px; cursor:pointer;">Submit Offer</button>
                     </form>
                     <p style="margin-top:12px; font-size:12px; color:rgba(255,255,255,0.4); text-align:center;">
-                        Or email directly: <a href="mailto:getsomequotesnow@gmail.com?subject=Offer%20for%20genproagi.com" style="color:var(--accent3);">getsomequotesnow@gmail.com</a>
+                        Or email directly: <a href="mailto:getsomequotesnow@gmail.com?subject=Offer%20for%20genproagi.com" style="color:var(--accent-3);">getsomequotesnow@gmail.com</a>
                     </p>
                 </div>
+                <!-- Success message -->
+                <div id="offer-success" style="display:none; margin-top:24px; padding:20px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); border-radius:12px; text-align:center;">
+                    <p style="font-size:18px; font-weight:600; color:#22c55e; margin-bottom:8px;">&#10003; Offer Submitted!</p>
+                    <p style="font-size:14px; color:var(--text-secondary);">We'll get back to you within 24 hours.</p>
+                </div>
                 <script>
-                function submitOffer(){
-                    var d='genproagi.com',n=document.getElementById('of-name').value,
-                        e=document.getElementById('of-email').value,
-                        a=document.getElementById('of-amount').value,
-                        m=document.getElementById('of-msg').value;
-                    var body='Domain: '+d+'%0A%0AFrom: '+encodeURIComponent(n)+' ('+encodeURIComponent(e)+')';
-                    if(a) body+='%0AOffer: $'+encodeURIComponent(a);
-                    if(m) body+='%0AMessage: '+encodeURIComponent(m);
-                    window.location.href='mailto:getsomequotesnow@gmail.com?subject=Offer for '+encodeURIComponent(d)+'&body='+body;
-                    return false;
-                }
+                (function(){
+                    // Math CAPTCHA
+                    var a=Math.floor(Math.random()*20)+3, b=Math.floor(Math.random()*15)+2;
+                    var answer=a+b;
+                    document.getElementById('captcha-q').textContent='Verify: '+a+' + '+b+' =';
+
+                    var form=document.getElementById('offer-form-el');
+                    if(form){form.addEventListener('submit',function(e){
+                        e.preventDefault();
+                        var userAns=parseInt(document.getElementById('captcha-answer').value,10);
+                        if(userAns!==answer){
+                            document.getElementById('captcha-error').style.display='block';
+                            document.getElementById('captcha-answer').value='';
+                            document.getElementById('captcha-answer').focus();
+                            return;
+                        }
+                        document.getElementById('captcha-error').style.display='none';
+                        var btn=form.querySelector('button[type=submit]');
+                        btn.textContent='Sending...';
+                        btn.disabled=true;
+                        var fd=new FormData(form);
+                        // Try Netlify Forms first, fall back to mailto
+                        fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
+                        .then(function(r){
+                            if(!r.ok) throw new Error('not ok');
+                            document.getElementById('offer-form').style.display='none';
+                            document.getElementById('offer-success').style.display='block';
+                        })
+                        .catch(function(){
+                            // Fallback: send via email
+                            var d=fd.get('domain'),n=fd.get('name'),em=fd.get('email'),
+                                o=fd.get('offer'),msg=fd.get('message');
+                            var body='Domain: '+d+'%0AFrom: '+encodeURIComponent(n)+' ('+encodeURIComponent(em)+')';
+                            if(o) body+='%0AOffer: $'+encodeURIComponent(o);
+                            if(msg) body+='%0AMessage: '+encodeURIComponent(msg);
+                            window.location.href='mailto:getsomequotesnow@gmail.com?subject=Offer for '+encodeURIComponent(d)+'&body='+body;
+                            document.getElementById('offer-form').style.display='none';
+                            document.getElementById('offer-success').style.display='block';
+                        });
+                    });}
+                })();
                 </script>
             </div>
         </section>
@@ -535,4 +619,6 @@
         </footer>
     </div>
 </body>
+</html>
+>
 </html>
