@@ -1,0 +1,10 @@
+name = "domain-router"
+main = "workers/domain-router.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+PAGES_ORIGIN = "https://domain-portfolio-ezl.pages.dev"
+
+[[routes]]
+pattern = "*/*"
+zone_name = "*"
