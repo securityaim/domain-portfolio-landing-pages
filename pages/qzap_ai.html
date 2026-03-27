@@ -450,7 +450,7 @@
         <!-- Hero -->
         <section class="hero">
             <div class="hero-badge">&#9733; Premium Domain</div>
-            <img src="../logos/qzap_ai.jpg" alt="qzap.ai" class="hero-logo" onerror="this.style.display='none'">
+            <img src="../logos/qzap_ai.png" alt="qzap.ai" class="hero-logo" onerror="this.style.display='none'">
             <p class="hero-tagline">Ultra-short .ai domains are the new premium digital real estate. Memorable, versatile, and universally brandable across any AI vertical.</p>
             <div class="cta-group">
                 
@@ -518,7 +518,7 @@
                         btn.textContent='Sending...';
                         btn.disabled=true;
                         var fd=new FormData(form);
-                        // Try Netlify Forms first, fall back to mailto
+                        // Submit to Netlify Forms
                         fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
                         .then(function(r){
                             if(!r.ok) throw new Error('not ok');
@@ -618,6 +618,9 @@
             <p>&copy; 2026 Domain Portfolio. All rights reserved. | <a href="mailto:getsomequotesnow@gmail.com" style="color: var(--accent-3); text-decoration: none;">Contact Us</a></p>
         </footer>
     </div>
+</body>
+</html>
+>
 </body>
 </html>
 >

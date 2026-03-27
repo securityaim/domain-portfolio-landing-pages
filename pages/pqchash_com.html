@@ -450,7 +450,7 @@
         <!-- Hero -->
         <section class="hero">
             <div class="hero-badge">&#9733; Premium Domain</div>
-            <img src="../logos/pqchash_com.jpg" alt="pqchash.com" class="hero-logo" onerror="this.style.display='none'">
+            <img src="../logos/pqchash_com.png" alt="pqchash.com" class="hero-logo" onerror="this.style.display='none'">
             <p class="hero-tagline">A premium domain name that positions your brand for success. Memorable, brandable, and ready for your next venture.</p>
             <div class="cta-group">
                 <a href="mailto:getsomequotesnow@gmail.com?subject=Buy%20Now%20-%20pqchash.com&body=I%20want%20to%20buy%20pqchash.com%20at%20the%20listed%20price%20of%20%24200" class="btn btn-primary" id="buy-now-btn">Buy Now &mdash; $200</a>
@@ -518,7 +518,7 @@
                         btn.textContent='Sending...';
                         btn.disabled=true;
                         var fd=new FormData(form);
-                        // Try Netlify Forms first, fall back to mailto
+                        // Submit to Netlify Forms
                         fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
                         .then(function(r){
                             if(!r.ok) throw new Error('not ok');
@@ -618,6 +618,9 @@
             <p>&copy; 2026 Domain Portfolio. All rights reserved. | <a href="mailto:getsomequotesnow@gmail.com" style="color: var(--accent-3); text-decoration: none;">Contact Us</a></p>
         </footer>
     </div>
+</body>
+</html>
+>
 </body>
 </html>
 >

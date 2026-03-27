@@ -450,7 +450,7 @@
         <!-- Hero -->
         <section class="hero">
             <div class="hero-badge">&#9733; Premium Domain</div>
-            <img src="../logos/arbeyond_com.jpg" alt="arbeyond.com" class="hero-logo" onerror="this.style.display='none'">
+            <img src="../logos/arbeyond_com.png" alt="arbeyond.com" class="hero-logo" onerror="this.style.display='none'">
             <p class="hero-tagline">Extended reality is the next computing platform. From Apple Vision Pro to Meta Quest, spatial computing needs strong brands. This domain delivers.</p>
             <div class="cta-group">
                 <a href="mailto:getsomequotesnow@gmail.com?subject=Buy%20Now%20-%20arbeyond.com&body=I%20want%20to%20buy%20arbeyond.com%20at%20the%20listed%20price%20of%20%24500" class="btn btn-primary" id="buy-now-btn">Buy Now &mdash; $500</a>
@@ -518,7 +518,7 @@
                         btn.textContent='Sending...';
                         btn.disabled=true;
                         var fd=new FormData(form);
-                        // Try Netlify Forms first, fall back to mailto
+                        // Submit to Netlify Forms
                         fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
                         .then(function(r){
                             if(!r.ok) throw new Error('not ok');
@@ -618,6 +618,9 @@
             <p>&copy; 2026 Domain Portfolio. All rights reserved. | <a href="mailto:getsomequotesnow@gmail.com" style="color: var(--accent-3); text-decoration: none;">Contact Us</a></p>
         </footer>
     </div>
+</body>
+</html>
+>
 </body>
 </html>
 >
