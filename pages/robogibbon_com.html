@@ -518,16 +518,28 @@
                         btn.textContent='Sending...';
                         btn.disabled=true;
                         var fd=new FormData(form);
-                        // Direct email submission (Cloudflare Pages compatible)
+                        // Submit via FormSubmit.co (free email forwarding service)
                         var d=fd.get('domain'),n=fd.get('name'),em=fd.get('email'),
                             o=fd.get('offer'),msg=fd.get('message');
-                        var body='Name: '+n+'%0AEmail: '+em+'%0ADomain: '+d;
-                        if(o) body+='%0AOffer: $'+o;
-                        if(msg) body+='%0AMessage: '+msg;
-                        var mailLink='mailto:getsomequotesnow@gmail.com?subject=Domain Offer: '+encodeURIComponent(d)+'&body='+body;
-                        window.open(mailLink,'_self');
-                        document.getElementById('offer-form').style.display='none';
-                        document.getElementById('offer-success').style.display='block';
+                        fetch('https://formsubmit.co/ajax/getsomequotesnow@gmail.com',{
+                            method:'POST',
+                            headers:{'Content-Type':'application/json','Accept':'application/json'},
+                            body:JSON.stringify({name:n,email:em,domain:d,offer:o||'Not specified',message:msg||'No message',_subject:'Domain Offer: '+d})
+                        })
+                        .then(function(r){return r.json();})
+                        .then(function(data){
+                            document.getElementById('offer-form').style.display='none';
+                            document.getElementById('offer-success').style.display='block';
+                        })
+                        .catch(function(err){
+                            // Fallback: open mailto
+                            var body='Name: '+encodeURIComponent(n)+'%0AEmail: '+encodeURIComponent(em)+'%0ADomain: '+encodeURIComponent(d);
+                            if(o) body+='%0AOffer: $'+encodeURIComponent(o);
+                            if(msg) body+='%0AMessage: '+encodeURIComponent(msg);
+                            window.location.href='mailto:getsomequotesnow@gmail.com?subject=Domain Offer: '+encodeURIComponent(d)+'&body='+body;
+                            document.getElementById('offer-form').style.display='none';
+                            document.getElementById('offer-success').style.display='block';
+                        });
                     });}
                 })();
                 </script>
