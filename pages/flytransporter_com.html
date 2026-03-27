@@ -518,24 +518,16 @@
                         btn.textContent='Sending...';
                         btn.disabled=true;
                         var fd=new FormData(form);
-                        // Submit to Netlify Forms
-                        fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
-                        .then(function(r){
-                            if(!r.ok) throw new Error('not ok');
-                            document.getElementById('offer-form').style.display='none';
-                            document.getElementById('offer-success').style.display='block';
-                        })
-                        .catch(function(){
-                            // Fallback: send via email
-                            var d=fd.get('domain'),n=fd.get('name'),em=fd.get('email'),
-                                o=fd.get('offer'),msg=fd.get('message');
-                            var body='Domain: '+d+'%0AFrom: '+encodeURIComponent(n)+' ('+encodeURIComponent(em)+')';
-                            if(o) body+='%0AOffer: $'+encodeURIComponent(o);
-                            if(msg) body+='%0AMessage: '+encodeURIComponent(msg);
-                            window.location.href='mailto:getsomequotesnow@gmail.com?subject=Offer for '+encodeURIComponent(d)+'&body='+body;
-                            document.getElementById('offer-form').style.display='none';
-                            document.getElementById('offer-success').style.display='block';
-                        });
+                        // Direct email submission (Cloudflare Pages compatible)
+                        var d=fd.get('domain'),n=fd.get('name'),em=fd.get('email'),
+                            o=fd.get('offer'),msg=fd.get('message');
+                        var body='Name: '+n+'%0AEmail: '+em+'%0ADomain: '+d;
+                        if(o) body+='%0AOffer: $'+o;
+                        if(msg) body+='%0AMessage: '+msg;
+                        var mailLink='mailto:getsomequotesnow@gmail.com?subject=Domain Offer: '+encodeURIComponent(d)+'&body='+body;
+                        window.open(mailLink,'_self');
+                        document.getElementById('offer-form').style.display='none';
+                        document.getElementById('offer-success').style.display='block';
                     });}
                 })();
                 </script>
